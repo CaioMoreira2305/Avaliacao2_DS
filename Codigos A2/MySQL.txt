@@ -1,0 +1,81 @@
+create database A1;
+
+use A1;
+
+CREATE TABLE aula (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100),
+  email VARCHAR(100),
+  senha VARCHAR(100),
+  senha_normal VARCHAR(100)
+);
+
+INSERT INTO aula (nome, email, senha, senha_normal)
+VALUES ('Caio', 'caio@gmail.com', MD5('123456'), '123456');
+
+SELECT * FROM aula;
+
+CREATE TABLE tb_categorias (
+	id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+	categoria_nome VARCHAR(100) NOT NULL
+);
+
+CREATE table tb_livros (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome_livro VARCHAR(200) NOT NULL,
+nome_autor VARCHAR(200) NOT NULL,
+imagem_url VARCHAR(255) DEFAULT NULL,
+descriao TEXT,
+id_categoria INT NOT NULL
+);
+
+ALTER TABLE tb_livros 
+ADD COLUMN preco DECIMAL(10,2) NOT NULL DEFAULT 0.00;
+
+ALTER TABLE tb_livros
+ADD CONSTRAINT fk_categorias FOREIGN KEY (id_categoria)
+REFERENCES tb_categorias(id_categoria);
+
+INSERT INTO tb_categorias(categoria_nome)
+VALUES 
+('Academicos'),
+('Literatura Infantil'), 
+('Misterio'),
+('Ficçao');
+
+SELECT * FROM tb_categorias;
+
+SELECT * FROM tb_livros;
+
+INSERT INTO tb_livros (nome_livro, nome_autor, imagem_url, id_categoria)
+VALUES
+('Cálculo, Volume 1', 'James Stewart','https://image.isu.pub/130611114738-5bff8861dbf3edccc0714dfb8403330d/jpg/page_1_social_preview.jpg', '1'),
+('Introdução à Economia', 'N. Gregory Mankiw', 'https://m.media-amazon.com/images/I/81j2li-RjrL._UF1000,1000_QL80_.jpg', '1'),
+('Princípios da Física', 'Raymond A. Serway e John W. Jewett', 'https://m.media-amazon.com/images/I/91L2SLSlpsL.jpg', '1'),
+('Estruturas de Dados e Algoritmos em C++', 'Adam Drozdek', 'https://m.media-amazon.com/images/I/71cpBDAK9vL.jpg', '1'),
+('Pesquisa Operacional', 'Hamdy Taha', 'https://m.media-amazon.com/images/I/61uxeuBZHeL.jpg', '1'),
+('Química: a Ciência Central', 'Theodore L. Brown et al.', 'https://m.media-amazon.com/images/I/61SFFlrCKDL._UF1000,1000_QL80_.jpg', '1');
+
+INSERT INTO tb_livros (nome_livro, nome_autor, imagem_url, id_categoria)
+VALUES
+('Branca de Neve', 'Irmãos Grimm', 'https://m.media-amazon.com/images/I/81vmNc5P9jL._UF1000,1000_QL80_.jpg', '2'),
+('Chapeuzinho Vermelho','Irmãos Grimm', 'https://m.media-amazon.com/images/I/71Gssp3jIEL._UF894,1000_QL80_.jpg', '2'),
+('Cinderela', 'Charles Perrault', 'https://m.media-amazon.com/images/I/71dE4epVezL._UF1000,1000_QL80_.jpg', '2'),
+('Os Três Porquinhos', 'Joseph Jacobs', 'https://m.media-amazon.com/images/I/71lPfpz2wvL._UF1000,1000_QL80_.jpg', '2'),
+('João e Maria', 'Irmãos Grimm', 'https://m.media-amazon.com/images/I/81WouwocJ6L._UF1000,1000_QL80_.jpg', '2'),
+('A Bela Adormecida', 'Charles Perrault', 'https://imgv2-2-f.scribdassets.com/img/document/543492098/original/df6779a9ed/1?v=1', '2');
+
+INSERT INTO tb_livros (nome_livro, nome_autor, imagem_url, id_categoria)
+VALUES
+('Harry Potter e a Pedra Filosofal', 'J.K. Rowling', 'https://m.media-amazon.com/images/I/61jgm6ooXzL._UF1000,1000_QL80_.jpg', '4'),
+('O Senhor dos Anéis: A Sociedade do Anel', 'J.R.R. Tolkien', 'https://m.media-amazon.com/images/I/81SWBRKfExL._UF1000,1000_QL80_.jpg', '4'),
+('Duna', 'Frank Herbert', 'https://m.media-amazon.com/images/I/81zN7udGRUL.jpg', '4'),
+('Jogos Vorazes', 'Suzanne Collins', 'https://m.media-amazon.com/images/I/71WOkspHbOL._UF894,1000_QL80_.jpg', '4'),
+('1984', 'George Orwell', 'https://m.media-amazon.com/images/I/819js3EQwbL.jpg', '4'),
+('Admirável Mundo Novo', 'Aldous Huxley', 'https://m.media-amazon.com/images/I/71Q6AA8w42L._UF894,1000_QL80_.jpg', '4');
+
+INSERT INTO tb_livros (nome_livro, nome_autor, imagem_url, id_categoria)
+VALUES
+('Assassinato no Expresso Oriente', 'Agatha Christie', 'https://m.media-amazon.com/images/I/712IZyH+HiL._UF1000,1000_QL80_.jpg', '3'),
+('O Código Da Vinci', 'Dan Brown', 'https://m.media-amazon.com/images/I/91QSDmqQdaL.jpg', '3'),
+('O Silêncio dos Inocentes', 'Thomas Harris', 'https://m.media-amazon.com/images/I/51iUTsAbgbL._UF1000,1000_QL80_.jpg', '3');
